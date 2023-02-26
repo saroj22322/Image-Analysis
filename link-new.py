@@ -84,7 +84,11 @@ def downloadImageDataset(sv_dir,datasetname,word):
 if __name__ == "__main__":
     dataset_dir= "/home/ec2-user/dataset"
     save_dir = "/home/ec2-user/fotos"
-    dataset_list = list(os.listdir(dataset_dir)) 
+    
+    tmp_dir = "/home/ec2-user/fotosTemp"
+    tmp_dir_list = list(os.listdir(tmp_dir))
+    
+    dataset_list = list(os.listdir(dataset_dir))
     dataset_name = os.path.join(dataset_dir,dataset_list[0])
 
     print("Dataset_name:" + dataset_name)
@@ -95,6 +99,9 @@ if __name__ == "__main__":
     for word in wordList:
         os.chdir(save_dir)
         subfolder='-'.join((word.split(' ')))
+        if subfolder in tmp_dir_list:
+            print("Skipping " + subfolder)
+            break
         os.mkdir(subfolder)
         wordSavePath=os.path.join(save_dir,subfolder)
         print("wordSavePath: "+wordSavePath)
