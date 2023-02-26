@@ -101,7 +101,7 @@ if __name__ == "__main__":
         subfolder='-'.join((word.split(' ')))
         if subfolder in tmp_dir_list:
             print("Skipping " + subfolder)
-            break
+            continue
         os.mkdir(subfolder)
         wordSavePath=os.path.join(save_dir,subfolder)
         print("wordSavePath: "+wordSavePath)
